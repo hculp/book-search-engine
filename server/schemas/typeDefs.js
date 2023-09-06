@@ -1,4 +1,4 @@
-const typeDefs = gql`
+const typeDefs = `
   type User {
     _id: ID
     username: String
@@ -16,7 +16,7 @@ const typeDefs = gql`
     title: String!
   }
 
-  type BookInput {
+  input BookInput {
     bookId: String!
     authors: [String]
     description: String!
