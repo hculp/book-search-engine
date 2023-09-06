@@ -48,6 +48,7 @@ const SearchBooks = () => {
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || "",
+        link: book.volumeInfo.infoLink,
       }));
 
       setSearchedBooks(bookData);
@@ -68,10 +69,14 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+    console.log(bookToSave);
+    console.log(Auth.getProfile().data);
     try {
       await saveBook({
-        variables: { ...bookToSave },
+        variables: {
+          bookData: bookToSave,
+          user: Auth.getProfile().data.username,
+        },
       });
 
       // if book successfully saves to user's account, save book id to state
